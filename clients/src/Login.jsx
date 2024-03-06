@@ -14,7 +14,7 @@ const Login= () => {
   const handleSubmit= (e)=>{
     e.preventDefault()
     window.localStorage.setItem("isLogedIn",true)
-    axios.post('https://capstone-7hlh.onrender.com/login',{email,password})
+    axios.post('https://capstone-bachend.onrender.com/login',{email,password})
     .then(result => {
       console.log(result)
       if(result.data === "success"){

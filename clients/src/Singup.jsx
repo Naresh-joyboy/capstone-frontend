@@ -13,7 +13,7 @@ const Singup = () => {
 
   const handleSubmit= (e)=>{
     e.preventDefault()
-    axios.post('https://capstone-7hlh.onrender.com1/register',{name,email,password})
+    axios.post('https://capstone-bachend.onrender.com/register',{name,email,password})
     .then(result => {console.log(result)
       navigate('/home')
       window.location.reload()

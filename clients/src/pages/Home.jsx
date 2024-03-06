@@ -10,7 +10,7 @@ const Home = ({specificdata}) => {
 
   const callApi =async ()=>{
     try{
-        const res = await axios.get('https://capstone-7hlh.onrender.com/users');
+        const res = await axios.get('https://capstone-bachend.onrender.com/users');
         setData(res.data)
     }catch(err){
         console.log("There is an error");
