@@ -38,14 +38,14 @@ const Recquery = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "https://capstone-bachend.onrender.com/user",
+        "http://localhost:5000/user",
         input
       );
     } catch (err) {
       console.log("there is an error");
     }
     setInput("");
-    navigate("/query");
+    navigate("/home");
   };
 
   const file = [
@@ -117,7 +117,7 @@ const Recquery = () => {
           </div>
           {file.map((data) =>
             data.id === input.category ? (
-              <div>
+              <div >
                 <h4 className="sub-title">Sub-Category</h4>
                 <div className="drop">
                   <select
@@ -126,7 +126,7 @@ const Recquery = () => {
                     name="subcategory"
                     onChange={handlechange}
                   >
-                    <option value="">select category</option>
+                    <option value="" key={data.index}>select category</option>
                     <option value={data.one}>{data.one}</option>
                     <option value={data.two}>{data.two}</option>
                     <option value={data.three}>{data.three}</option>

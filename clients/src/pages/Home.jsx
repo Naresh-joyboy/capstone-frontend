@@ -10,7 +10,7 @@ const Home = ({specificdata}) => {
 
   const callApi =async ()=>{
     try{
-        const res = await axios.get('https://capstone-bachend.onrender.com/users');
+        const res = await axios.get('http://localhost:5000/users');
         setData(res.data)
     }catch(err){
         console.log("There is an error");
@@ -22,7 +22,7 @@ const Home = ({specificdata}) => {
     callApi()
   },[])
 
-  const lastdata =(data.slice(-1));
+  
   const navigate = useNavigate();
 
   return (
@@ -38,52 +38,53 @@ const Home = ({specificdata}) => {
       
       <div className="boxs" >
         <div className="first-box">
-        {data.map((data)=>(
-          <div className="first-box-up" key={data.id} onClick={() => {
-            specificdata(data)
-            navigate('/useform')}}>
+        {data && data.map((item) => (
+          <div className="first-box-up" key={item.id} onClick={() => {
+            specificdata(item)
+            navigate('/useform')
+          }}>
             <div className="box-details">
               <div className="container" >
-              <div className="left-box">
-                <div className="detail-id-name">{`QN${data.id}-${data.quDescription}`}</div>
-                <div className="detail-doubt-name">{data.category}</div>
-              </div>
+                <div className="left-box">
+                  <div className="detail-id-name">{`QN${item.id}-${item.quDescription}`}</div>
+                  <div className="detail-doubt-name">{item.category}</div>
+                </div>
                 <div className="right-box">
-                <div className="box-assign">Assigned</div>
-                <div className="box-date">{data.date}</div>
+                  <div className="box-assign">Assigned</div>
+                  <div className="box-date">{item.date}</div>
                 </div>
               </div>
             </div>
           </div>
-          ))}
-        </div>
+        ))}
+      </div>
         
         <div className="second-box">
         <div className="second-box-up">
-        <div className="detailedbox">
-        {lastdata.map((data)=>(
-        <div className="container" key={data.id}>
-        <div className="con-detaile" >
-          <div className="box-title"><h5>Recent query</h5></div>
-          <div className="description2"><h4>{`QN${data.id} - ${data.queTitle}`}</h4></div>
-          <div className="assigned2"><h5 >Assigned</h5></div>
-          <div className="box-created">Created at:<br/><span className="inner-line">{data.date}</span></div>
-          <div className="box-des">Description:<br/><span className="inner-line">{data.quDescription}</span></div>
-          <div className="box-assig">Assigned to:{}</div>
-          <div className="box-attach">Attachments:<img alt=""></img></div>
-          <div className="but2"><button className="query-btn2" onClick={() => {
-            specificdata(data);
-            navigate('/useform');
-          }}>Go to query</button></div>
+          <div className="detailedbox">
+            {data.length > 0 && (
+              <div className="container" key={data[data.length - 1].id}>
+                <div className="con-detaile" >
+                  <div className="box-title"><h5>Recent query</h5></div>
+                  <div className="description2"><h4>{`QN${data[data.length - 1].id} - ${data[data.length - 1].queTitle}`}</h4></div>
+                  <div className="assigned2"><h5 >Assigned</h5></div>
+                  <div className="box-created">Created at:<br /><span className="inner-line">{data[data.length - 1].date}</span></div>
+                  <div className="box-des">Description:<br /><span className="inner-line">{data[data.length - 1].quDescription}</span></div>
+                  <div className="box-assig">Assigned to:{}</div>
+                  <div className="box-attach">Attachments:<img alt=""></img></div>
+                  <div className="but2"><button className="query-btn2" onClick={() => {
+                    specificdata(data[data.length - 1]);
+                    navigate('/useform');
+                  }}>Go to query</button></div>
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-        ))}
-        </div> 
-        </div>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default Home;

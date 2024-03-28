@@ -13,9 +13,9 @@ const Singup = () => {
 
   const handleSubmit= (e)=>{
     e.preventDefault()
-    axios.post('https://capstone-bachend.onrender.com/register',{name,email,password})
+    axios.post('http://localhost:5000/register',{name,email,password})
     .then(result => {console.log(result)
-      navigate('/home')
+      navigate('/login')
       window.location.reload()
     })
     .catch(err => console.log(err))

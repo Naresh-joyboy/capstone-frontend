@@ -5,18 +5,16 @@ import "../pages/pag.css";
 const Navbar = (view) => {
   const navigate = useNavigate();
   const login = window.localStorage.getItem("isLogedIn");
-  // useEffect(()=>{
-  //     navigate('/')
-  // },[Logout])
+  
   const Login = () => {
-    navigate("/home");
+    navigate("/login");
     window.location.reload();
   };
 
   const Logout = () => {
     window.localStorage.removeItem("isLogedIn");
     window.localStorage.removeItem("loginSuccess");
-    navigate("/home");
+    navigate("/login");
     window.location.reload();
   };
 
@@ -40,7 +38,7 @@ const Navbar = (view) => {
           </li>
 
           <li className="nav-li1">
-            <Link to={"/query"}>Query</Link>
+            <Link to={"/home"}>Query</Link>
           </li>
 
           <li className="nav-li2">
